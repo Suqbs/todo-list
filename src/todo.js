@@ -1,8 +1,6 @@
-import { validateTodo } from "./todoManager";
-
-export default class todo {
+export default class Todo {
   constructor(todoParams = { desc, dueDate, priority, note, checkList }) {
-    Object.assign(this, params);
+    Object.assign(this, todoParams);
   }  
 }
 
@@ -15,5 +13,5 @@ const ExampleTodo = {
   checkList: true,
 };
 
-const ExampleTodoo = new todo(ExampleTodo);
+const ExampleTodoo = new Todo(ExampleTodo);
 console.log(ExampleTodoo);
