@@ -1,5 +1,5 @@
 import "./styles.css";
-import { GetProjects, CreateProject, DeleteProject, addTodo } from "./projectManager";
+import { GetProjects, CreateProject, DeleteProject, addTodo, deleteTodo } from "./projectManager";
 
 CreateProject("dsafsdafs");
 GetProjects();
@@ -13,3 +13,4 @@ const ExampleTodo = {
 };
 
 addTodo(ExampleTodo, 0);
+deleteTodo(0, 0);

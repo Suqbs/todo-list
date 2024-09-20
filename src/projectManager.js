@@ -11,10 +11,7 @@ export function GetProjects() {
 export function DeleteProject(index) {
   // const index = projects.indexOf(project);
 
-  if (index > -1) {
-    // only splice array when item is found
     projects.splice(index, 1); // 2nd parameter means remove one item only
-  }
 }
 
 export function CreateProject(title) {
@@ -33,10 +30,8 @@ export function addTodo(todoParams, projectIndex) {
 }
 
 export function deleteTodo(projectIndex, todoIndex) {
-  if (index > -1) {
     // only splice array when item is found
     projects[projectIndex].todos.splice(todoIndex, 1); // 2nd parameter means remove one item only
-  }
 }
 
 function validateProject(title) {
