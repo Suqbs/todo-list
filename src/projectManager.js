@@ -5,7 +5,8 @@ import { createTodo } from "./todoCreator";
 const projects = [];
 
 export function GetProjects() {
-  projects.forEach((project) => console.log(project));
+  // projects.forEach((project) => console.log(project));
+  console.log(projects);
 }
 
 export function DeleteProject(index) {

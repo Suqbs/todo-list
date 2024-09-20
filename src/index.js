@@ -14,3 +14,6 @@ const ExampleTodo = {
 
 addTodo(ExampleTodo, 0);
 deleteTodo(0, 0);
+
+// Consoleda her şey istendiği gibi çalışıyor bir problem yok.
+// Bir dahakinde DOM işlerini halledersin artık.
