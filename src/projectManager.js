@@ -1,5 +1,5 @@
 import Project from "./project";
-import { createTodo } from "./todoManager";
+import { createTodo } from "./todoCreator";
 
 // Hold projects in an array
 const projects = [];
@@ -18,7 +18,7 @@ export function DeleteProject(index) {
 }
 
 export function CreateProject(title) {
-  if (validateProject) {
+  if (validateProject(title)) {
     const newProject = new Project(title);
 
     // add project to projects array
@@ -29,11 +29,19 @@ export function CreateProject(title) {
 export function addTodo(todoParams, projectIndex) {
   const newTodo = createTodo(todoParams);
 
-  projects[projectIndex].todo.push(newTodo);
+  projects[projectIndex].todos.push(newTodo);
 }
 
-function validateProject(project) {
-  if (!project.title) {
+export function deleteTodo(projectIndex, todoIndex) {
+  if (index > -1) {
+    // only splice array when item is found
+    projects[projectIndex].todos.splice(todoIndex, 1); // 2nd parameter means remove one item only
+  }
+}
+
+function validateProject(title) {
+  // İleriye ödev buraya string bir değer gönderilmediği zaman çözmen lazım
+  if (!title.trim()) {
     console.log("Please give title to the project");
     return false;
   }
