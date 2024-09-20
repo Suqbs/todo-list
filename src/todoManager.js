@@ -1,11 +1,8 @@
 import Todo from "./todo";
 
-export function createTodo(todoParams, projectIndex) {
+export function createTodo(todoParams) {
   if (validateTodo(todoParams)) {
-    const newTodo = new Todo(todoParams);
-
-    // add todo to project -- how to make a relationship between array index and a dom element?  this question is for the future reference
-
+    return new Todo(todoParams);
   }
 }
 

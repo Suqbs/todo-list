@@ -5,15 +5,15 @@ import { createTodo } from "./todoManager";
 const projects = [];
 
 export function GetProjects() {
-  console.log(projects);
+  projects.forEach((project) => console.log(project));
 }
 
-export function DeleteProject(project) {
-  const index = projects.indexOf(project);
+export function DeleteProject(index) {
+  // const index = projects.indexOf(project);
 
   if (index > -1) {
     // only splice array when item is found
-    array.splice(index, 1); // 2nd parameter means remove one item only
+    projects.splice(index, 1); // 2nd parameter means remove one item only
   }
 }
 
@@ -26,8 +26,10 @@ export function CreateProject(title) {
   }
 }
 
-export function addTodoToProject(todo) {
+export function addTodo(todoParams, projectIndex) {
+  const newTodo = createTodo(todoParams);
 
+  projects[projectIndex].todo.push(newTodo);
 }
 
 function validateProject(project) {
