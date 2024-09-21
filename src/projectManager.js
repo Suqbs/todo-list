@@ -1,5 +1,5 @@
 import Project from "./project";
-import { createTodo } from "./todoCreator";
+import { createTodo, addDueDate } from "./todoManager";
 
 // Hold projects in an array
 const projects = [];

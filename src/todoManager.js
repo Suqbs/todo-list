@@ -6,6 +6,14 @@ export function createTodo(todoParams) {
   }
 }
 
+export function addDueDate(todo, date) {
+  todo.dueDate = date;
+}
+
+export function removeDueDate(todo) {
+  todo.dueDate = "";
+}
+
 function validateTodo(todoParams) {
   if (!(todoParams.desc && todoParams.priority)) {
     console.log("Please fill out the necessary fields.");
