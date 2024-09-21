@@ -1,6 +1,7 @@
 export default class Todo {
-  constructor(todoParams = { desc, dueDate, priority, note, checkList }) {
+  constructor(todoParams = { desc, priority, note, checkList }) {
     Object.assign(this, todoParams);
+    this.dueDate = "";
   }  
 }
 
