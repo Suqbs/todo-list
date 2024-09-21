@@ -10,6 +10,10 @@ export function addDueDate(todo, date) {
   todo.dueDate = date;
 }
 
+export function editTodo(todo, todoParams) {
+  Object.assign(todo, todoParams);
+}
+
 export function removeDueDate(todo) {
   todo.dueDate = "";
 }
