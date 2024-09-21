@@ -5,6 +5,7 @@ import {
   DeleteProject,
   addTodo,
   deleteTodo,
+  editProject
 } from "./projectManager";
 import { addDueDate, removeDueDate } from "./todoManager";
 import { createTodo, editTodo } from "./todoManager";
@@ -43,6 +44,7 @@ addTodo(newTodo, 0);
 editTodo(newTodo, testTodo);
 
 GetProjects();
+EditProject({title: "Nereyi nereyi keşfetmek"} ,0);
 
 // Consoleda her şey istendiği gibi çalışıyor bir problem yok.
 // Bir dahakinde DOM işlerini halledersin artık.

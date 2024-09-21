@@ -9,6 +9,11 @@ export function GetProjects() {
   console.log(projects);
 }
 
+export function EditProject(projectParams, projectIndex) {
+  const project = projects[projectIndex];
+  Object.assign(project, projectParams);
+}
+
 export function DeleteProject(index) {
   // const index = projects.indexOf(project);
 
