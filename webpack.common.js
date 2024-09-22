@@ -13,6 +13,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "to-dos",
+      template: "./src/template.html"
     }),
   ],
   module: {
