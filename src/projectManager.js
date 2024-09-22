@@ -1,12 +1,15 @@
 import Project from "./project";
-import { createTodo, addDueDate } from "./todoManager";
 
 // Hold projects in an array
 const projects = [];
 
-export function GetProjects() {
+export function GetAllProjects() {
   // projects.forEach((project) => console.log(project));
   console.log(projects);
+}
+
+export function GetProject(projectIndex) {
+  return projects[projectIndex];
 }
 
 export function EditProject(projectParams, projectIndex) {
@@ -15,8 +18,6 @@ export function EditProject(projectParams, projectIndex) {
 }
 
 export function DeleteProject(index) {
-  // const index = projects.indexOf(project);
-
     projects.splice(index, 1); // 2nd parameter means remove one item only
 }
 
@@ -27,17 +28,6 @@ export function CreateProject(title) {
     // add project to projects array
     AddProject(newProject);
   }
-}
-
-export function addTodo(todoParams, projectIndex) {
-  const newTodo = createTodo(todoParams);
-
-  projects[projectIndex].todos.push(newTodo);
-}
-
-export function deleteTodo(projectIndex, todoIndex) {
-    // only splice array when item is found
-    projects[projectIndex].todos.splice(todoIndex, 1); // 2nd parameter means remove one item only
 }
 
 function validateProject(title) {

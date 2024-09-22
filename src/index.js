@@ -1,27 +1,30 @@
 import "./styles.css";
 import {
-  GetProjects,
+  GetAllProjects,
+  GetProject,
   CreateProject,
   DeleteProject,
-  addTodo,
   deleteTodo,
-  editProject
+  EditProject,
 } from "./projectManager";
 import { addDueDate, removeDueDate } from "./todoManager";
-import { createTodo, editTodo } from "./todoManager";
-// import { formatISO } from "date-fns";
+import { createTodo, editTodo,getTodo } from "./todoManager";
 
-// const day = format(new Date(2014, 1, 11), "dd/MM/yyyy");
-// console.log(day);
+GetAllProjects();
 
+//#region Test
+
+//#region Create a Project
 CreateProject("dsafsdafs");
+//#endregion
 
-// const day = formatISO(new Date("2024-11-11"), {representation: 'date'});
-const day = new Date("2024-11-11");
-console.log(day);
+// //#region Date is Valid?
+const day = new Date("20");
+// //#endregion
 
+//#region Example Param Objects
 const ExampleTodo = {
-  desc: "İstanbul'u keşfetmek",
+  desc: "asdfsdaf",
   priority: "Medium",
   note: "Not",
   checkBox: true,
@@ -33,18 +36,27 @@ const testTodo = {
   note: "...",
   checkBox: false,
 };
+//#endregion
 
-const newTodo = createTodo(ExampleTodo);
-console.log(newTodo);
+//#region create Todo
+createTodo(ExampleTodo, GetProject(0));;
+//#endregion
 
-addDueDate(newTodo, day);
-removeDueDate(newTodo);
+ //#region edit Todo
+editTodo(getTodo(0), testTodo);
+//#endregion
 
-addTodo(newTodo, 0);
-editTodo(newTodo, testTodo);
+//#region add due date
+addDueDate(getTodo(0), day);
+removeDueDate(getTodo(0));
+//#endregion
 
-GetProjects();
-EditProject({title: "Nereyi nereyi keşfetmek"} ,0);
+//#region Edit Project
+EditProject({ title: "Nereyi nereyi keşfetmek" }, 0);
+//#endregion
+
+//#endregion
 
 // Consoleda her şey istendiği gibi çalışıyor bir problem yok.
 // Bir dahakinde DOM işlerini halledersin artık.
+

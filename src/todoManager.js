@@ -1,17 +1,43 @@
 import Todo from "./todo";
+import { isValid } from "date-fns";
 
-export function createTodo(todoParams) {
+const todos = [];
+
+export function createTodo(todoParams, project) {
   if (validateTodo(todoParams)) {
-    return new Todo(todoParams);
+    // Assign params and project to todo
+    const newTodo = new Todo(todoParams);
+    newTodo.project = project;
+    project.todos.push(newTodo);
+    // Push to todos array
+    todos.push(newTodo);
   }
 }
 
-export function addDueDate(todo, date) {
-  todo.dueDate = date;
+export function getTodos() {
+  console.log((todo) => console.log(todo))
+}
+
+export function getTodo(todoIndex) {
+  return todos[todoIndex];
+} 
+
+export function deleteTodo(todo) {
+  todos.splice(todos.indexOf(todo), 1);
 }
 
 export function editTodo(todo, todoParams) {
   Object.assign(todo, todoParams);
+}
+
+export function addDueDate(todo, date) {
+  if(isValid)
+  {
+    todo.dueDate = date;
+  }
+  else {
+    console.log("The day is not valid.")
+  }
 }
 
 export function removeDueDate(todo) {
