@@ -1,3 +1,48 @@
+/* CSS RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:not(dialog) {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font: inherit;
+}
+
 body {
-    background-color: rebeccapurple;
+  min-height: 100svh;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  max-width: 65ch;
+}
+/* CSS RESET ENDS HERE */
+
+body {
+  background-color: rebeccapurple;
 }

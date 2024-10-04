@@ -9,6 +9,7 @@ import {
 } from "./projectManager";
 import { addDueDate, removeDueDate } from "./todoManager";
 import { createTodo, editTodo,getTodo } from "./todoManager";
+import { formatISO } from "date-fns";
 
 GetAllProjects();
 
@@ -18,8 +19,9 @@ GetAllProjects();
 CreateProject("dsafsdafs");
 //#endregion
 
-// //#region Date is Valid?
-const day = new Date("20");
+// //#region Date
+const day = formatISO(new Date(), { representation: 'date' });
+console.log(day);
 // //#endregion
 
 //#region Example Param Objects
@@ -39,7 +41,7 @@ const testTodo = {
 //#endregion
 
 //#region create Todo
-createTodo(ExampleTodo, GetProject(0));;
+createTodo(ExampleTodo, GetProject(0));
 //#endregion
 
  //#region edit Todo
@@ -56,6 +58,8 @@ EditProject({ title: "Nereyi nereyi keşfetmek" }, 0);
 //#endregion
 
 //#endregion
+
+addDueDate(getTodo(0), day);
 
 // Consoleda her şey istendiği gibi çalışıyor bir problem yok.
 // Bir dahakinde DOM işlerini halledersin artık.
