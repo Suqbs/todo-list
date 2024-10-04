@@ -46,3 +46,7 @@ figcaption {
 body {
   background-color: rebeccapurple;
 }
+
+.wrap-collapsiple input[type='checkbox'] {
+    display: none;
+}
