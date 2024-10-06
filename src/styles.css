@@ -39,14 +39,92 @@ p,
 li,
 figcaption {
   text-wrap: pretty;
-  max-width: 65ch;
+  max-width: var(--maxWidthforTexts);
 }
 /* CSS RESET ENDS HERE */
 
-body {
-  background-color: rebeccapurple;
+:root {
+  --maxWidthforTexts: 65ch; 
 }
 
-.wrap-collapsiple input[type='checkbox'] {
+body {
+  background-color: white;
+}
+
+.wrap-collapsible {
+  max-width: var(--maxWidthforTexts);
+}
+
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+
+  transition: max-height .25s ease-in-out;
+}
+
+.wrap-collapsible input[type='checkbox'] {
     display: none;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 100vh;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+  background: rgba(250, 224, 66, .2);
+  border-bottom: 1px solid rgba(250, 224, 66, .45);
+
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: .5rem 1rem;
+}
+
+.lbl-toggle {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 1rem;
+
+  color: #A77B0E;
+  background: #FAE042;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+
+.lbl-toggle:hover {
+  color: #7C5A0B;
+}
+
+.lbl-toggle::before {
+  content: ' ';
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+
+  vertical-align: middle;
+  margin-right: .7rem;
+
+  transition: transform .2s ease-out;
+}
+
+.horizontal-vertical-centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
