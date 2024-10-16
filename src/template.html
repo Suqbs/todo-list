@@ -6,7 +6,8 @@
     <title>to-dos</title>
   </head>
   <body>
-    <div class="wrap-collapsible">
+    <!--Note component-->
+    <!-- <div class="wrap-collapsible">
       <input id="collapsible" class="toggle" type="checkbox" />
       <label for="collapsible" class="lbl-toggle horizontal-vertical-centering">More Info</label>
       <div class="collapsible-content">
@@ -20,6 +21,30 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
+    <!--note component ends-->
+    
+    <!--Sidebar Component-->
+    <div class="sidebar-icon"><svg width="24px" height="24px"><use href="#open-menu"></use></svg></div>
+    
+    <div class="sidebar-container">
+    <aside class="sidebar">
+      <a href="" class="sidebar-item">
+        <div>Today</div>
+      </a>
+      <a href="" class="sidebar-item">
+        <div>Upcoming</div>
+      </a>
+      <a href="" class="sidebar-item">
+        <div>Tasks</div>
+      </a>
+    </aside>
+  </div>    
+
+    <!--SVG's-->
+    <svg style="display: none;">
+      <symbol id="close-menu" viewBox="0 -960 960 960" fill="#e8eaed"><path d="M120-240v-80h520v80H120Zm664-40L584-480l200-200 56 56-144 144 144 144-56 56ZM120-440v-80h400v80H120Zm0-200v-80h520v80H120Z"></symbol>
+      <symbol id="open-menu" viewBox="0 -960 960 960" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"></symbol>
+    </svg>
   </body>
 </html>
