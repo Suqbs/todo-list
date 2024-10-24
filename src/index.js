@@ -57,10 +57,42 @@ removeDueDate(getTodo(0));
 EditProject({ title: "Nereyi nereyi keşfetmek" }, 0);
 //#endregion
 
+addDueDate(getTodo(0), day);
+
 //#endregion
 
-addDueDate(getTodo(0), day);
+
 
 // Consoleda her şey istendiği gibi çalışıyor bir problem yok.
 // Bir dahakinde DOM işlerini halledersin artık.
+
+const menuIcon = document.getElementById("menu-icon-span");
+const sidebar = document.getElementById("sidebar");
+const sidebarContainer = document.getElementById("sidebar-container");
+console.log(sidebar);
+
+let menuOpen = true;
+
+function closeMenu() {
+  menuOpen = false;
+  sidebarContainer.style.maxWidth = "0px";
+  sidebar.style.display = "none";
+  menuIcon.classList.add("rotate-y-axis");
+}
+
+function openMenu() {
+  menuOpen = true;
+  sidebar.style.display = "block";
+  sidebarContainer.style.maxWidth = "20rem";
+  menuIcon.classList.remove("rotate-y-axis");
+}
+
+menuIcon.addEventListener('click', function() {
+  if(!menuOpen) {
+    openMenu();
+  }
+  else{
+    closeMenu();
+  }
+})
 
