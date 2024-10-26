@@ -75,7 +75,7 @@ let menuOpen = true;
 
 function closeMenu() {
   menuOpen = false;
-  sidebarContainer.style.maxWidth = "0px";
+  sidebarContainer.style.flexBasis = "0px";
   sidebar.style.display = "none";
   menuIcon.classList.add("rotate-y-axis");
 }
@@ -83,7 +83,7 @@ function closeMenu() {
 function openMenu() {
   menuOpen = true;
   sidebar.style.display = "block";
-  sidebarContainer.style.maxWidth = "20rem";
+  sidebarContainer.style.flexBasis = "20rem";
   menuIcon.classList.remove("rotate-y-axis");
 }
 
