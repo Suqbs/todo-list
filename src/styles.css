@@ -69,12 +69,15 @@ figcaption {
   text-wrap: pretty;
   max-width: var(--maxWidthforTexts);
 }
+
 /* CSS RESET ENDS HERE */
 
 :root {
   --maxWidthforTexts: 65ch;
   --light-weight: 300;
   --sidebar-font-color: rgb(245, 245, 245);
+  --note-header-font-color: rgb(255, 255, 255);
+  --note-header-bg-color: #4D4D4D;
 }
 
 html {
@@ -110,15 +113,15 @@ body {
   display: none;
 }
 
-.toggle:checked + .lbl-toggle + .collapsible-content {
+.toggle:checked+.lbl-toggle+.collapsible-content {
   max-height: 100vh;
 }
 
-.toggle:checked + .lbl-toggle::before {
+.toggle:checked+.lbl-toggle::before {
   transform: rotate(90deg) translateX(-3px);
 }
 
-.toggle:checked + .lbl-toggle {
+.toggle:checked+.lbl-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -141,8 +144,8 @@ body {
 
   padding: 1rem;
 
-  color: #a77b0e;
-  background: #fae042;
+  color: var(--note-header-font-color);
+  background: var(--note-header-bg-color);
 
   cursor: pointer;
 
@@ -151,7 +154,7 @@ body {
 }
 
 .lbl-toggle:hover {
-  color: #7c5a0b;
+  
 }
 
 .lbl-toggle::before {
@@ -193,6 +196,7 @@ body {
 .sidebar-container {
   font-weight: bold;
   flex-basis: 20rem;
+  transition: flex-basis .5s ease;
 }
 
 .sidebar {
