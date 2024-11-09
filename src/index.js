@@ -8,7 +8,7 @@ import {
   EditProject,
 } from "./projectManager";
 import { addDueDate, removeDueDate } from "./todoManager";
-import { createTodo, editTodo,getTodo } from "./todoManager";
+import { createTodo, editTodo, getTodo } from "./todoManager";
 import { formatISO } from "date-fns";
 
 GetAllProjects();
@@ -20,7 +20,7 @@ CreateProject("dsafsdafs");
 //#endregion
 
 // //#region Date
-const day = formatISO(new Date(), { representation: 'date' });
+const day = formatISO(new Date(), { representation: "date" });
 console.log(day);
 // //#endregion
 
@@ -44,7 +44,7 @@ const testTodo = {
 createTodo(ExampleTodo, GetProject(0));
 //#endregion
 
- //#region edit Todo
+//#region edit Todo
 editTodo(getTodo(0), testTodo);
 //#endregion
 
@@ -60,8 +60,6 @@ EditProject({ title: "Nereyi nereyi keşfetmek" }, 0);
 addDueDate(getTodo(0), day);
 
 //#endregion
-
-
 
 // Consoleda her şey istendiği gibi çalışıyor bir problem yok.
 // Bir dahakinde DOM işlerini halledersin artık.
@@ -83,16 +81,14 @@ function closeMenu() {
 function openMenu() {
   menuOpen = true;
   sidebar.style.display = "block";
-  sidebarContainer.style.flexBasis = "20rem";
+  sidebarContainer.style.flexBasis = "70rem";
   menuIcon.classList.remove("rotate-y-axis");
 }
 
-menuIcon.addEventListener('click', function() {
-  if(!menuOpen) {
+menuIcon.addEventListener("click", function () {
+  if (!menuOpen) {
     openMenu();
-  }
-  else{
+  } else {
     closeMenu();
   }
-})
-
+});
