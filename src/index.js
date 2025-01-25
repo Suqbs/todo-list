@@ -10,6 +10,7 @@ import {
 import { addDueDate, removeDueDate } from "./todoManager";
 import { createTodo, editTodo, getTodo } from "./todoManager";
 import { formatISO } from "date-fns";
+import "./uiManager";
 
 GetAllProjects();
 
@@ -64,31 +65,4 @@ addDueDate(getTodo(0), day);
 // Consoleda her şey istendiği gibi çalışıyor bir problem yok.
 // Bir dahakinde DOM işlerini halledersin artık.
 
-const menuIcon = document.getElementById("menu-icon-span");
-const sidebar = document.getElementById("sidebar");
-const sidebarContainer = document.getElementById("sidebar-container");
-console.log(sidebar);
 
-let menuOpen = true;
-
-function closeMenu() {
-  menuOpen = false;
-  sidebarContainer.style.flexBasis = "0px";
-  sidebar.style.display = "none";
-  menuIcon.classList.add("rotate-y-axis");
-}
-
-function openMenu() {
-  menuOpen = true;
-  sidebar.style.display = "block";
-  sidebarContainer.style.flexBasis = "70rem";
-  menuIcon.classList.remove("rotate-y-axis");
-}
-
-menuIcon.addEventListener("click", function () {
-  if (!menuOpen) {
-    openMenu();
-  } else {
-    closeMenu();
-  }
-});
