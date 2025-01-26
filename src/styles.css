@@ -320,11 +320,19 @@ main {
 .todo-info {
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
   column-gap: 1rem;
 }
 
 .edit-todo {
   margin-inline-start: 1rem;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 0.2rem;
+
+  &:hover {
+    border: 2px solid #b7ada47a;
+  }
 }
 
 dialog {
@@ -335,17 +343,13 @@ dialog {
   background-color: var(--dialog-bg);
   color: var(--dialog-font-color);
   width: min(100%, 65ch);
-}
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
 
-label {
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-dialog {
   input,
   textarea,
   select,
@@ -357,6 +361,10 @@ dialog {
     background-color: var(--dialog-fiels-bg-color);
     width: 100%;
     color: white;
+
+    & +label {
+      margin-block-start: 0.5rem;
+    }
   }
 
   label {
@@ -383,6 +391,7 @@ dialog {
     display: flex;
     justify-content: end;
     gap: 1rem;
+    margin-block-start: 1rem;
 
     & button {
       cursor: pointer;
@@ -404,67 +413,67 @@ dialog {
     gap: 2rem;
     align-items: center;
   }
-}
 
-.completed-label .completed {
-  appearance: none;
-  background-color: #dfe1e4;
-  border-radius: 72px;
-  border-style: none;
-  flex-shrink: 0;
-  height: 20px;
-  margin: 0;
-  position: relative;
-  width: 30px;
-}
+  .completed-label .completed {
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    flex-shrink: 0;
+    height: 1.25em;
+    margin: 0;
+    position: relative;
+    width: 1.875em;
+  }
 
-.completed-label .completed::before {
-  bottom: -6px;
-  content: "";
-  left: -6px;
-  position: absolute;
-  right: -6px;
-  top: -6px;
-}
+  .completed-label .completed::before {
+    bottom: -0.375em;
+    content: "";
+    left: -0.375em;
+    position: absolute;
+    right: -0.375em;
+    top: -0.375em;
+  }
 
-.completed-label .completed,
-.completed-label .completed::after {
-  transition: all 100ms ease-out;
-}
+  .completed-label .completed,
+  .completed-label .completed::after {
+    transition: all 100ms ease-out;
+  }
 
-.completed-label .completed::after {
-  background-color: #fff;
-  border-radius: 50%;
-  content: "";
-  height: 14px;
-  left: 3px;
-  position: absolute;
-  top: 3px;
-  width: 14px;
-}
+  .completed-label .completed::after {
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 0.875em;
+    left: 0.1875em;
+    position: absolute;
+    top: 0.1875em;
+    width: 0.875em;
+  }
 
-.completed-label input[type="checkbox"] {
-  cursor: default;
-}
+  .completed-label input[type="checkbox"] {
+    cursor: default;
+  }
 
-.completed-label .completed:hover {
-  background-color: #c9cbcd;
-  transition-duration: 0s;
-}
+  .completed-label .completed:hover {
+    background-color: #c9cbcd;
+    transition-duration: 0s;
+  }
 
-.completed-label .completed:checked {
-  background-color: #6e79d6;
-}
+  .completed-label .completed:checked {
+    background-color: rgb(138, 28, 206);
+  }
 
-.completed-label .completed:checked::after {
-  background-color: #fff;
-  left: 13px;
-}
+  .completed-label .completed:checked::after {
+    background-color: #fff;
+    left: 0.8125em;
+  }
 
-.completed-label :focus:not(.focus-visible) {
-  outline: 0;
-}
+  .completed-label :focus:not(.focus-visible) {
+    outline: 0;
+  }
 
-.completed-label .completed:checked:hover {
-  background-color: #535db3;
+  .completed-label .completed:checked:hover {
+    background-color: rgb(100, 20, 150);
+  }
 }
