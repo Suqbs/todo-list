@@ -76,35 +76,38 @@ figcaption {
   --maxWidthforTexts: 65ch;
   --light-weight: 300;
 
+  /* Background Color */
+  --bg-color: rgb(25, 25, 25); /* Charcoal Black */
+
   /* Sidebar Colors */
-  --sidebar-font-color: rgb(220, 220, 220);
-  --sidebar-bg-color: rgb(34, 12, 58);
-  --sidebar-bg-color-hover: rgb(100, 40, 130);
+  --sidebar-font-color: #e0e0e0; /* Light Gray */
+  --sidebar-bg-color: rgb(32, 32, 32); /* Electric Blue */
+  --sidebar-bg-color-hover: rgb(44, 44, 44); /* Darker Electric Blue */
 
   /* Note Header Colors */
-  --note-header-font-color: rgb(255, 255, 255);
-  --note-header-bg-color: rgb(100, 20, 150);
+  --note-header-font-color: white; /* Charcoal Black */
+  --note-header-bg-color: transparent; /* Deep Purple */
+  --note-header-bg-color-hover: rgb(38, 38, 38); /* Darker Deep Purple */
 
   /* Note Body Colors */
-  --note-body-bg-color: rgb(140, 60, 200);
-  --note-body-font-color: rgb(235, 224, 224);
+  --note-body-bg-color: rgb(38, 38, 38);  /* Dark Gray */
+  --note-body-font-color: #e0e0e0; /* Light Gray */
 
-  /* Background Colors */
-  --bg-color: rgb(20, 20, 30);
-
-  /* Icon Colors */
-  --menu-icon-color: rgb(255, 255, 255);
-  --menu-icon-hover: rgb(63, 64, 71);
-  --plus-button-color: rgb(100, 20, 150);
-  --plus-button-color-hover: rgb(138, 28, 206);
+  /* Icon / Button Colors */
+  --menu-icon-color: white; /* Cyan */
+  --menu-icon-hover: rgb(44, 44, 44); /* Darker Cyan */
+  --plus-button-color: transparent; /* Deep Purple */
+  --plus-button-color-hover: rgb(44, 44, 44); /* Darker Deep Purple */
+  --project-add-button-bg-color: rgb(67, 67, 67); /* Transparent Electric Blue */
+  --edit-todo-button-bg-color-hover: rgb(50, 50, 50); /* Transparent Deep Purple */
 
   /* Dialog Colors */
-  --dialog-bg: rgb(59, 68, 75);
-  --dialog-font-color: rgb(255, 255, 255);
-  --dialog-fiels-bg-color: rgb(54, 69, 79);
-  --dialog-fiels-bg-color-hover: rgba(237, 234, 224, 0.712);
-  --dialog-button-bg-color: rgb(100, 20, 150);
-  --dialog-button-bg-color-hover: rgb(138, 28, 206);
+  --dialog-bg: #2f3438; /* Charcoal Black */
+  --dialog-font-color: #e0e0e0; /* Light Gray */
+  --dialog-fiels-bg-color: #373c3f; /* Dark Gray */
+  --dialog-fiels-bg-color-hover: #373c3f; /* Slightly Lighter Gray */
+  --dialog-button-bg-color: #373c3f; /* Electric Blue */
+  --dialog-button-bg-color-hover: #3f4448; /* Darker Electric Blue */
 }
 
 html {
@@ -138,6 +141,7 @@ main {
 .wrap-collapsible {
   /* max-width: var(--maxWidthforTexts); */
   margin-block-end: 1rem;
+  /* border: 2px solid rgb(51, 51, 51); */
 }
 
 .collapsible-content {
@@ -154,9 +158,9 @@ main {
   max-height: 100vh;
 }
 
-.toggle:checked + .lbl-toggle::before {
-  transform: rotate(90deg) translateX(-3px);
-}
+/* .toggle:checked + .lbl-toggle .is-todo-open svg {
+  transform: rotate(90deg);
+} */
 
 .toggle:checked + .lbl-toggle {
   border-bottom-right-radius: 0;
@@ -179,14 +183,19 @@ main {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+  /* box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px; */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 7px;
 
   color: var(--note-header-font-color);
   background: var(--note-header-bg-color);
 
   cursor: pointer;
-
-  border-radius: 7px;
   transition: all 0.25s ease-out;
+
+  &:hover {
+    background-color: var(--note-header-bg-color-hover);
+  }
 }
 
 /* Sidebar */
@@ -227,8 +236,10 @@ main {
   top: 0;
   left: 0;
   padding: 0.5rem 0.3rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   color: var(--sidebar-font-color);
+  padding-block-start: 1rem;
+  box-shadow: rgba(255, 255, 255, 0.05) -1px 0px 0px 0px inset;
 }
 
 .sidebar-item {
@@ -237,13 +248,12 @@ main {
   display: flex;
   column-gap: 1rem;
   border-radius: 10px;
-  margin-block-end: 0.5rem;
   color: inherit;
 }
 
 .sidebar-item,
 .project-header {
-  padding: 0.3rem;
+  padding: 0.4rem 1rem;
   border-radius: 10px;
   align-items: center;
   transition: background-color 0.3s ease;
@@ -278,7 +288,7 @@ main {
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: var(--project-add-button-bg-color);
     }
   }
 }
@@ -290,6 +300,13 @@ main {
   overflow-y: auto;
   padding-inline-end: 1rem;
   margin-block-end: 2rem;
+}
+
+.todo-title {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .scroll-indicator-span {
@@ -364,7 +381,7 @@ main {
 
   &:hover {
     /* border: 2px solid #b7ada47a; */
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--edit-todo-button-bg-color-hover);
   }
 }
 
@@ -474,7 +491,7 @@ dialog {
   }
 
   .completed-label .completed::after {
-    background-color: #fff;
+    background-color: rgb(50, 50, 50);
     border-radius: 50%;
     content: "";
     height: 0.875em;
@@ -489,12 +506,12 @@ dialog {
   }
 
   .completed-label .completed:hover {
-    background-color: #c9cbcd;
+    background-color: #9c9da0;
     transition-duration: 0s;
   }
 
   .completed-label .completed:checked {
-    background-color: rgb(138, 28, 206);
+    background-color: rgb(102, 102, 102);
   }
 
   .completed-label .completed:checked::after {
@@ -507,6 +524,6 @@ dialog {
   }
 
   .completed-label .completed:checked:hover {
-    background-color: rgb(100, 20, 150);
+    background-color: rgb(85, 85, 85);
   }
 }
