@@ -1,30 +1,11 @@
-const menuIcon = document.getElementById("menu-icon-wrapper");
-const sidebar = document.getElementById("sidebar");
-const sidebarContainer = document.getElementById("sidebar-container");
-console.log(sidebar);
+// Select the toggle button and the sidebar
+const toggleBtn = document.getElementById('menu-icon-wrapper');
+const sidebar = document.getElementById('sidebar');
 
-let menuOpen = true;
-
-function closeMenu() {
-  menuOpen = false;
-  sidebarContainer.style.flexBasis = "0px";
-  sidebar.style.display = "none";
-  menuIcon.classList.add("rotate-y-axis");
-}
-
-function openMenu() {
-  menuOpen = true;
-  sidebar.style.display = "block";
-  sidebarContainer.style.flexBasis = "70rem";
-  menuIcon.classList.remove("rotate-y-axis");
-}
-
-menuIcon.addEventListener("click", function () {
-  if (!menuOpen) {
-    openMenu();
-  } else {
-    closeMenu();
-  }
+// Add a click event listener to toggle the sidebar's "open" class
+toggleBtn.addEventListener('click', function() {
+  sidebar.classList.toggle('close');
+  toggleBtn.classList.toggle('rotate-y-axis');
 });
 
 const noteWrapper = document.querySelector(".note-wrapper");
