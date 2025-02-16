@@ -169,7 +169,7 @@ function createTodoElement(todo) {
 
   // Create wrapper element
   const wrapper = document.createElement("div");
-  wrapper.className = "wrap-collapsible";
+  wrapper.className = "wrap-collapsible todo";
 
   // Create collapsible checkbox
   const collapsibleCheckbox = document.createElement("input");
@@ -306,6 +306,7 @@ export function setupEventListeners() {
 }
 
 function handleProjectClick(e) {
+  if(e.target.classList.contains("project-three-dots")) return;
   const projectElement = e.target.closest(".sidebar-item");
   if (!projectElement) return;
 
@@ -370,4 +371,10 @@ function removeTodoButton() {
     button.removeEventListener("click", todoButtonHandler);
     wrapper.remove();
   }
+}
+
+function handleTodoClick(e) {
+  if(e.target.classList.contains("todo-menu-button")) return;
+  const todoElement = e.target.closest('.todo');
+  if (!todoElement) return;
 }

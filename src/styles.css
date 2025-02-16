@@ -207,9 +207,8 @@ main {
 
   color: var(--note-header-font-color);
   background: var(--note-header-bg-color);
-
-  cursor: pointer;
   transition: all 0.25s ease-out;
+  cursor: pointer;
 
   &:hover {
     background-color: var(--note-header-bg-color-hover);
@@ -335,7 +334,6 @@ main {
 
 .project-three-dots {
   margin-inline-start: auto;
-
   font-weight: normal;
   border: none;
   border-radius: 4px;
@@ -345,6 +343,7 @@ main {
   justify-self: end;
   padding: 0.15rem;
   cursor: pointer;
+  flex-shrink: 0;
 
   &:hover {
     background-color: var(--project-add-button-bg-color);
