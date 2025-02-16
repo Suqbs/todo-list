@@ -1,15 +1,22 @@
 export default class Todo {
   constructor({
+    name = "",
     desc = "",
     priority = "",
-    note = "",
-    checkBox = false,
+    completed = false,
     dueDate = "",
   }) {
-    this.desc = desc;
+    this.name = name;
+    if(!desc)
+    {
+      this.desc = "No description added for this todo.";
+    }
+    else
+    {
+      this.desc = desc;
+    }
     this.priority = priority;
-    this.note = note;
-    this.checkBox = checkBox;
+    this.completed = completed;
     this.dueDate = dueDate;
   }
 }

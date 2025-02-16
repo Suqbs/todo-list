@@ -1,44 +1,34 @@
 import Project from "./project";
+import { projects, projectsMap } from "./states";
+import { saveToLocalStorage } from "./states";
+import {
+  clearProjectDialogValues,
+  closeProjectDialog,
+  renderProjects,
+} from "./uiManager";
 
-// Hold projects in an array
-const projects = [];
+export function addProject(projectDialogValues) {
+  const { projectName } = projectDialogValues;
 
-export function GetAllProjects() {
-  // projects.forEach((project) => console.log(project));
-  console.log(projects);
-}
-
-export function GetProject(projectIndex) {
-  return projects[projectIndex];
-}
-
-export function EditProject(projectParams, projectIndex) {
-  const project = projects[projectIndex];
-  Object.assign(project, projectParams);
-}
-
-export function DeleteProject(index) {
-    projects.splice(index, 1); // 2nd parameter means remove one item only
-}
-
-export function CreateProject(title) {
-  if (validateProject(title)) {
-    const newProject = new Project(title);
-
-    // add project to projects array
-    AddProject(newProject);
+  if (!projectName) {
+    alert("Please enter a project name");
+    return;
   }
-}
 
-function validateProject(title) {
-  // İleriye ödev buraya string bir değer gönderilmediği zaman çözmen lazım
-  if (!title.trim()) {
-    console.log("Please give title to the project");
-    return false;
-  }
-  return true;
-}
-
-function AddProject(project) {
+  const project = new Project(projectName);
   projects.push(project);
+  console.log(projects);
+  saveToLocalStorage();
+  renderProjects();
+  closeProjectDialog();
+  clearProjectDialogValues();
+}
+
+// todo bitir bunu
+function editProject(projectElement, projectDialogValues) {
+  const project = projectsMap.get(projectElement);
+  const { newName } = projectDialogValues;
+  if (!newName) return;
+
+  project.name = newName;
 }

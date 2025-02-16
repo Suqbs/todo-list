@@ -1,54 +1,30 @@
+import { activeProject, saveToLocalStorage } from "./states";
 import Todo from "./todo";
-import { isValid } from "date-fns";
+import { clearTodoDialogValues, closeTodoDialog, renderTodos } from "./uiManager";
 
-const todos = [];
+export function addTodo(takeTodoDialogValues) {
+  //todo buradan devam et basit tut
+  if (!activeProject) return;
+  const { name, desc, priority, dueDate, completed } = takeTodoDialogValues;
 
-export function createTodo(todoParams, project) {
-  if (validateTodo(todoParams)) {
-    // Assign params and project to todo
-    const newTodo = new Todo(todoParams);
-    newTodo.project = project;
-    project.todos.push(newTodo);
-    // Push to todos array
-    todos.push(newTodo);
+  console.log("Completed value:", completed);
+  console.log("dueDate", dueDate);
+
+  if (!name || !priority || !dueDate) {
+    alert("Please fill all of the fields first.");
+    return;
   }
-}
-
-export function getTodos() {
-  console.log((todo) => console.log(todo))
-}
-
-export function getTodo(todoIndex) {
-  return todos[todoIndex];
-} 
-
-export function deleteTodo(todo) {
-  todos.splice(todos.indexOf(todo), 1);
-}
-
-export function editTodo(todo, todoParams) {
-  Object.assign(todo, todoParams);
-}
-
-export function addDueDate(todo, date) {
-  if(isValid)
-  {
-    todo.dueDate = date;
-  }
-  else {
-    console.log("The day is not valid.")
-  }
-}
-
-export function removeDueDate(todo) {
-  todo.dueDate = "";
-}
-
-function validateTodo(todoParams) {
-  if (!(todoParams.desc && todoParams.priority)) {
-    console.log("Please fill out the necessary fields.");
-    return false;
+  if (priority !== "HIGH" && priority !== "MEDIUM" && priority !== "LOW") {
+    alert("Please choose a valid priority");
+    return;
   }
 
-  return true;
+  const newTodo = new Todo({name, desc, priority, completed, dueDate});
+
+  activeProject.todos.push(newTodo);
+  console.log("Pushed Todo", newTodo);
+  saveToLocalStorage();
+  renderTodos(activeProject);
+  closeTodoDialog();
+  clearTodoDialogValues();
 }
