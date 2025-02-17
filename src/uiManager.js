@@ -142,8 +142,8 @@ function createProjectElement(project) {
   h2.textContent = project.name;
 
   const div = document.createElement("div");
+  div.classList.add("three-dots");
   div.classList.add("project-three-dots");
-
   const threeDotSvg = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "svg"
@@ -157,12 +157,34 @@ function createProjectElement(project) {
   );
   threeDotUse.setAttribute("href", "#horizontal-dots");
 
+  // Create modal structure
+  const modal = document.createElement("div");
+  modal.className = "modal-generic project-modal";
+
+  const modalContent = document.createElement("div");
+  modalContent.className = "modal-content";
+
+  // Create buttons
+  const editButton = document.createElement("button");
+  editButton.className = "modal-item";
+  editButton.textContent = "Edit";
+
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "modal-item";
+  deleteButton.textContent = "Delete";
+
+  // Assemble the structure
+  modalContent.appendChild(editButton);
+  modalContent.appendChild(deleteButton);
+  modal.appendChild(modalContent);
+
   // Assemble the elements
   svg.appendChild(use);
   sidebarItem.appendChild(svg);
   sidebarItem.appendChild(h2);
   threeDotSvg.appendChild(threeDotUse);
   div.appendChild(threeDotSvg);
+  div.appendChild(modal);
   sidebarItem.appendChild(div);
 
   return sidebarItem;
@@ -239,7 +261,8 @@ function createTodoElement(todo) {
 
   // Create three dots menu
   const threeDotsDiv = document.createElement("div");
-  threeDotsDiv.className = "todo-three-dots";
+  threeDotsDiv.classList.add("three-dots");
+  threeDotsDiv.classList.add("todo-three-dots");
 
   const threeDotsSvg = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -251,8 +274,32 @@ function createTodoElement(todo) {
   const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
   use.setAttribute("href", "#horizontal-dots");
 
+  // Create the outer modal container
+  const modal = document.createElement("div");
+  modal.className = "modal-generic todo-modal";
+
+  // Create the modal content container
+  const modalContent = document.createElement("div");
+  modalContent.className = "modal-content";
+
+  // Create Edit button
+  const editButton = document.createElement("button");
+  editButton.className = "modal-item";
+  editButton.textContent = "Edit";
+
+  // Create Delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "modal-item";
+  deleteButton.textContent = "Delete";
+
+  // Assemble the structure
+  modalContent.appendChild(editButton);
+  modalContent.appendChild(deleteButton);
+  modal.appendChild(modalContent);
+
   threeDotsSvg.appendChild(use);
   threeDotsDiv.appendChild(threeDotsSvg);
+  threeDotsDiv.appendChild(modal);
 
   // Create collapsible content
   const collapsibleContent = document.createElement("div");
@@ -296,6 +343,14 @@ export function setupEventListeners() {
   submitTodoBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addTodo(takeTodoDialogValues());
+  });
+
+  document.addEventListener("click", () => {
+    const openModals = document.querySelectorAll(".show");
+    console.log(openModals);
+    if (!openModals) return;
+
+    openModals.forEach((modal) => modal.classList.remove("show"));
   });
 }
 
@@ -358,7 +413,24 @@ function removeTodoButton() {
 }
 
 function handleProjectClick(e) {
-  if (e.target.classList.contains("project-three-dots")) return;
+  if (e.target.closest(".project-three-dots")) {
+    e.stopPropagation();
+
+    const openModals = document.querySelectorAll(".show");
+
+    if (openModals) {
+      openModals.forEach((modal) => modal.classList.remove("show"));
+    }
+
+    const projectThreeDots = e.target.closest(".project-three-dots");
+    console.log(projectThreeDots);
+    const modal = projectThreeDots.querySelector(".project-modal");
+    modal.classList.toggle("show");
+    // if (modal.classList.contains('show')) {
+    //   positionModal(modal);
+    // }
+    return;
+  }
   const projectElement = e.target.closest(".sidebar-item");
   if (!projectElement) return;
 
@@ -368,7 +440,24 @@ function handleProjectClick(e) {
 }
 
 function handleTodoClick(e) {
-  if (e.target.classList.contains("todo-three-dots")) return;
+  if (e.target.closest(".todo-three-dots")) {
+    e.stopPropagation();
+
+    const openModals = document.querySelectorAll(".show");
+
+    if (openModals) {
+      openModals.forEach((modal) => modal.classList.remove("show"));
+    }
+
+    const todoThreeDots = e.target.closest(".todo-three-dots");
+    console.log(todoThreeDots);
+    const modal = todoThreeDots.querySelector(".todo-modal");
+    modal.classList.toggle("show");
+    // if (modal.classList.contains('show')) {
+    //   positionModal(modal);
+    // }
+    return;
+  }
   const todoElement = e.target.closest(".todo");
   if (!todoElement) return;
   console.log(todoElement);

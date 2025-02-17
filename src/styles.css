@@ -282,11 +282,11 @@ main {
   border-radius: 4px;
   color: inherit;
   background-color: transparent;
-  font-size: 1.6rem;
   justify-self: end;
   padding: 0.15rem;
   cursor: pointer;
   flex-shrink: 0;
+  position: relative;
 
   &:hover {
     background-color: var(--project-add-button-bg-color);
@@ -545,6 +545,7 @@ dialog {
 .todo-three-dots {
   border-radius: 6px;
   flex-shrink: 0;
+  position: relative;
 
   &:hover {
     background-color: var(--todo-three-dots-bg-color-hover);
@@ -639,4 +640,45 @@ dialog {
   stroke-dasharray: 100;
   stroke-dashoffset: 101;
   transition: all 250ms cubic-bezier(1, 0, 0.37, 0.91);
+}
+
+/* modal styling */
+.todo-modal, .project-modal {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  transform: translateY(10px);
+  background: var(--dialog-fiels-bg-color);
+  color: white;
+  border: 1px solid #9c9da0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 100;
+  display: none;
+}
+
+.todo-modal.show, .project-modal.show {
+  display: block;
+}
+
+.modal-content {
+  padding: 8px 0;
+}
+
+.modal-item {
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 250ms ease;
+}
+
+.modal-item:last-child {
+  color: red;
+}
+
+.modal-item:hover {
+  background-color: rgb(44, 44, 44);
 }
