@@ -40,8 +40,7 @@
           </button>
         </div>
 
-        <ul class="projects" id="projects">
-        </ul>
+        <ul class="projects" id="projects"></ul>
       </aside>
 
       <span id="menu-icon-span">
@@ -54,62 +53,39 @@
 
       <main id="main" class="main">
         <div class="note-wrapper" id="todos">
-          <div class="wrap-collapsible">
-            <input id="collapsible" class="toggle" type="checkbox" />
-            <label
-              for="collapsible"
-              class="lbl-toggle horizontal-vertical-centering"
-            >
-              <div class="title-info-wrapper">
-                <div class="todo-title">
-                  <div class="completed-todo-checkbox-wrapper">
-                    <input type="checkbox" id="completed-todo-checkbox" />
-                    <label
-                      for="completed-todo-checkbox"
-                      style="--size: 1.875rem"
-                    >
-                      <svg
-                        width="1.875rem"
-                        height="1.875rem"
-                        viewBox="0,0,50,50"
-                      >
-                        <path d="M5 30 L 20 45 L 45 5"></path>
-                      </svg>
-                    </label>
-                    <p>Lorem ipsum dolor sit amet</p>
-                  </div>
-                </div>
-                <div class="todo-info">
-                  <span class="due-date-info">25-08-2014</span>
-                  <span class="priority-info">HIGH</span>
-                </div>
-              </div>
-              <span class="todo-menu-button">
-                <svg width="24px" height="24px">
-                  <use href="#horizontal-dots"></use>
-                </svg>
-              </span>
-            </label>
-            <div class="collapsible-content">
-              <div class="content-inner">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                  facilisis finibus fermentum. Proin gravida vehicula ante
-                  suscipit consequat. Nulla facilisi. Donec elementum posuere
-                  dapibus. Praesent consequat tortor a ultrices laoreet. Sed
-                  vitae gravida nibh. Cras at metus faucibus, porttitor odio
-                  nec, malesuada mi. Nullam facilisis, neque auctor rhoncus
-                  pharetra, nisl nunc dictum arcu, ut pretium nibh augue ac ex.
-                  Curabitur gravida nibh id lacus semper convallis. Vivamus
-                  lacinia efficitur lectus, a sagittis turpis mollis nec.
-                  Quisque id nunc felis. Donec aliquet eu metus eu porttitor.
-                  Fusce lobortis est ac ligula venenatis, a semper magna tempus.
-                  Mauris velit diam, suscipit nec eros eu, mattis iaculis lorem.
-                  Curabitur sed urna porta, mattis urna non, malesuada libero.
-                </p>
+          <!-- START checkbox for todo-->
+          <div class="todo-title-wrapper todo">
+            <div class="todo-title">
+              <div class="completed-todo-checkbox-wrapper">
+                <input type="checkbox" id="completed-todo-checkbox" />
+                <label
+                  for="completed-todo-checkbox"
+                  class="completed-todo-checkbox-label"
+                  style="--size: 1.875rem"
+                >
+                  <svg width="1.875rem" height="1.875rem" viewBox="0,0,50,50">
+                    <path d="M5 30 L 20 45 L 45 5"></path>
+                  </svg>
+                </label>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
+            <p class="due-date-info">18/02/2025</p>
+            <div class="todo-three-dots">
+              <svg width="24px" height="24px">
+                <use href="#horizontal-dots"></use>
+              </svg>
+            </div>
           </div>
+          <div class="collapsible-content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+              aperiam dolorum consectetur nulla minima natus, ipsam, ipsa sint
+              soluta ab pariatur praesentium veniam consequuntur molestiae
+              cumque perspiciatis corporis quos quas.
+            </p>
+          </div>
+          <!-- END checkbox for todo -->
         </div>
         <div class="scroll-indicator-span" id="scroll-indicator-span"></div>
         <!-- <div class="add-todo-wrapper">

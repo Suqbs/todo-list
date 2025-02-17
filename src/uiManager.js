@@ -299,20 +299,12 @@ export function setupEventListeners() {
     addProject(takeProjectDialogValues());
   });
 
+  todosDOM.addEventListener("click", handleTodoClick);
+
   submitTodoBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addTodo(takeTodoDialogValues());
   });
-}
-
-function handleProjectClick(e) {
-  if(e.target.classList.contains("project-three-dots")) return;
-  const projectElement = e.target.closest(".sidebar-item");
-  if (!projectElement) return;
-
-  console.log("Clicked project:", projectElement);
-
-  selectProject(projectElement);
 }
 
 function selectProject(projectElement) {
@@ -373,8 +365,32 @@ function removeTodoButton() {
   }
 }
 
+function handleProjectClick(e) {
+  if(e.target.classList.contains("project-three-dots")) return;
+  const projectElement = e.target.closest(".sidebar-item");
+  if (!projectElement) return;
+
+  console.log("Clicked project:", projectElement);
+
+  selectProject(projectElement);
+}
+
 function handleTodoClick(e) {
-  if(e.target.classList.contains("todo-menu-button")) return;
+  if(e.target.classList.contains("todo-three-dots")) return;
   const todoElement = e.target.closest('.todo');
   if (!todoElement) return;
+  console.log(todoElement);
+
+  const collapsible = todoElement.nextElementSibling;
+
+  if(collapsible.classList.contains("active"))
+  {
+    collapsible.classList.remove("active");
+    todoElement.classList.remove("flat-bottom-borders");
+  }
+  else
+  {
+    collapsible.classList.add("active");
+    todoElement.classList.add("flat-bottom-borders");
+  }
 }
