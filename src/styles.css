@@ -515,14 +515,14 @@ dialog {
   align-items: center;
   color: white;
   background-color: var(--note-header-bg-color);
-  background: linear-gradient(to right, #f0b429, #f0b429) left / 5px 100% no-repeat, var(--note-header-bg-color);
-  border: 1px solid var();
+  border: 1px solid transparent;
   border-radius: 6px;
   padding: 0.2rem 0.2rem 0.2rem 10px;
   transition: all 0.25s ease-in-out;
+  cursor: pointer;
 
   &:hover {
-    background-color: var(--note-header-bg-color-hover);
+    border: 1px solid #555;
   }
 }
 
@@ -543,7 +543,8 @@ dialog {
 }
 
 .todo-three-dots {
-  border-radius: 3px;
+  border-radius: 6px;
+  flex-shrink: 0;
 
   &:hover {
     background-color: var(--todo-three-dots-bg-color-hover);
@@ -557,15 +558,21 @@ dialog {
   grid-template-rows: 0fr;
   transition: 250ms all ease;
   padding: 0 0.4rem;
+  visibility: hidden;
 }
 
 .collapsible-content.active {
   grid-template-rows: 1fr;
   padding: 0.2rem 0.4rem;
+  visibility: visible;
 }
 
 .collapsible-content > p {
   overflow: hidden;
+}
+
+.todo-wrapper + .todo-wrapper {
+  margin-block-start: 0.5rem;
 }
 
 /* checkbox for todo */

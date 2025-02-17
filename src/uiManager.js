@@ -144,11 +144,17 @@ function createProjectElement(project) {
   const div = document.createElement("div");
   div.classList.add("project-three-dots");
 
-  const threeDotSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const threeDotSvg = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg"
+  );
   threeDotSvg.setAttribute("width", "24px");
   threeDotSvg.setAttribute("height", "24px");
 
-  const threeDotUse = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  const threeDotUse = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "use"
+  );
   threeDotUse.setAttribute("href", "#horizontal-dots");
 
   // Assemble the elements
@@ -164,123 +170,109 @@ function createProjectElement(project) {
 
 function createTodoElement(todo) {
   // Generate proper UUIDs
-  const collapsibleId = crypto.randomUUID();
   const completedCheckboxId = crypto.randomUUID();
 
-  // Create wrapper element
-  const wrapper = document.createElement("div");
-  wrapper.className = "wrap-collapsible todo";
+  // Create main container
+  const todoWrapper = document.createElement("div");
+  todoWrapper.className = "todo-wrapper todo";
 
-  // Create collapsible checkbox
-  const collapsibleCheckbox = document.createElement("input");
-  collapsibleCheckbox.type = "checkbox";
-  collapsibleCheckbox.className = "toggle";
-  collapsibleCheckbox.id = collapsibleId;
+  // Create title wrapper
+  const todoTitleWrapper = document.createElement("div");
+  todoTitleWrapper.className = "todo-title-wrapper";
 
-  // Create main label
-  const label = document.createElement("label");
-  label.htmlFor = collapsibleId;
-  label.className = "lbl-toggle horizontal-vertical-centering";
+  if (todo.priority === "HIGH") {
+    todoTitleWrapper.style.background =
+      "linear-gradient(to right, #b90505, #b90505) left / 5px 100% no-repeat, var(--note-header-bg-color)";
+  } else if (todo.priority === "MEDIUM") {
+    todoTitleWrapper.style.background =
+      "linear-gradient(to right, #f0b429, #f0b429) left / 5px 100% no-repeat, var(--note-header-bg-color)";
+  } else if (todo.priority === "LOW") {
+    todoTitleWrapper.style.background =
+      "linear-gradient(to right, #14b106, #14b106) left / 5px 100% no-repeat, var(--note-header-bg-color)";
+  }
 
-  // Build title info wrapper
-  const titleInfoWrapper = document.createElement("div");
-  titleInfoWrapper.className = "title-info-wrapper";
-
-  // title for todo
+  // Create title section
   const todoTitle = document.createElement("div");
   todoTitle.className = "todo-title";
 
+  // Create checkbox wrapper
   const checkboxWrapper = document.createElement("div");
   checkboxWrapper.className = "completed-todo-checkbox-wrapper";
 
-  // Completed checkbox
-  const completedCheckbox = document.createElement("input");
-  completedCheckbox.type = "checkbox";
-  completedCheckbox.id = completedCheckboxId;
+  // Create checkbox input
+  const checkboxInput = document.createElement("input");
+  checkboxInput.type = "checkbox";
+  checkboxInput.id = completedCheckboxId;
+  checkboxInput.checked = todo.completed;
 
-  // Completed label
-  const completedLabel = document.createElement("label");
-  completedLabel.htmlFor = completedCheckboxId;
-  completedLabel.style.setProperty("--size", "1.875rem");
+  // Create checkbox label
+  const checkboxLabel = document.createElement("label");
+  checkboxLabel.htmlFor = completedCheckboxId;
+  checkboxLabel.className = "completed-todo-checkbox-label";
+  checkboxLabel.style.setProperty("--size", "1.875rem");
 
-  // SVG construction
-  const checkboxSvg = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "svg"
-  );
-  checkboxSvg.setAttribute("width", "1.875rem");
-  checkboxSvg.setAttribute("height", "1.875rem");
-  checkboxSvg.setAttribute("viewBox", "0 0 50 50");
+  // Create checkmark SVG
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "1.875rem");
+  svg.setAttribute("height", "1.875rem");
+  svg.setAttribute("viewBox", "0 0 50 50");
 
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute("d", "M5 30 L 20 45 L 45 5");
-  checkboxSvg.appendChild(path);
 
-  // text for todo
-  const todoText = document.createElement("p");
-  todoText.textContent = todo.name;
+  svg.appendChild(path);
+  checkboxLabel.appendChild(svg);
 
-  // info for todo
-  const todoInfo = document.createElement("div");
-  todoInfo.className = "todo-info";
+  // Create title text
+  const titleText = document.createElement("p");
+  titleText.textContent = todo.name;
 
-  const dueDate = document.createElement("span");
-  dueDate.className = "due-date";
-  dueDate.textContent = todo.dueDate;
+  // Assemble checkbox components
+  checkboxWrapper.appendChild(checkboxInput);
+  checkboxWrapper.appendChild(checkboxLabel);
+  checkboxWrapper.appendChild(titleText);
 
-  const priority = document.createElement("span");
-  priority.className = "priority";
-  priority.textContent = todo.priority;
+  // Create due date info
+  const dueDateInfo = document.createElement("p");
+  dueDateInfo.className = "due-date-info";
+  dueDateInfo.textContent = todo.dueDate;
 
-  // Edit icon
-  const todoMenuButton = document.createElement("span");
-  todoMenuButton.className = "todo-menu-button";
+  // Create three dots menu
+  const threeDotsDiv = document.createElement("div");
+  threeDotsDiv.className = "todo-three-dots";
 
-  const todoMenuSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  todoMenuSvg.setAttribute("width", "24px");
-  todoMenuSvg.setAttribute("height", "24px");
+  const threeDotsSvg = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg"
+  );
+  threeDotsSvg.setAttribute("width", "24px");
+  threeDotsSvg.setAttribute("height", "24px");
 
   const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
   use.setAttribute("href", "#horizontal-dots");
-  todoMenuSvg.appendChild(use);
 
-  // Collapsible content
+  threeDotsSvg.appendChild(use);
+  threeDotsDiv.appendChild(threeDotsSvg);
+
+  // Create collapsible content
   const collapsibleContent = document.createElement("div");
   collapsibleContent.className = "collapsible-content";
 
-  const contentInner = document.createElement("div");
-  contentInner.className = "content-inner";
+  const description = document.createElement("p");
+  description.textContent = todo.desc;
 
-  const contentParagraph = document.createElement("p");
-  contentParagraph.textContent = todo.desc;
+  collapsibleContent.appendChild(description);
 
-  // Assemble structure
-  completedLabel.appendChild(checkboxSvg);
-  checkboxWrapper.appendChild(completedCheckbox);
-  checkboxWrapper.appendChild(completedLabel);
-  checkboxWrapper.appendChild(todoText);
-
+  // Assemble all components
   todoTitle.appendChild(checkboxWrapper);
+  todoTitleWrapper.appendChild(todoTitle);
+  todoTitleWrapper.appendChild(dueDateInfo);
+  todoTitleWrapper.appendChild(threeDotsDiv);
 
-  todoInfo.appendChild(dueDate);
-  todoInfo.appendChild(priority);
+  todoWrapper.appendChild(todoTitleWrapper);
+  todoWrapper.appendChild(collapsibleContent);
 
-  titleInfoWrapper.appendChild(todoTitle);
-  titleInfoWrapper.appendChild(todoInfo);
-
-  todoMenuButton.appendChild(todoMenuSvg);
-
-  label.appendChild(titleInfoWrapper);
-  label.appendChild(todoMenuButton);
-
-  contentInner.appendChild(contentParagraph);
-  collapsibleContent.appendChild(contentInner);
-
-  wrapper.appendChild(collapsibleCheckbox);
-  wrapper.appendChild(label);
-  wrapper.appendChild(collapsibleContent);
-
-  return wrapper;
+  return todoWrapper;
 }
 
 export function setupEventListeners() {
@@ -366,7 +358,7 @@ function removeTodoButton() {
 }
 
 function handleProjectClick(e) {
-  if(e.target.classList.contains("project-three-dots")) return;
+  if (e.target.classList.contains("project-three-dots")) return;
   const projectElement = e.target.closest(".sidebar-item");
   if (!projectElement) return;
 
@@ -376,20 +368,17 @@ function handleProjectClick(e) {
 }
 
 function handleTodoClick(e) {
-  if(e.target.classList.contains("todo-three-dots")) return;
-  const todoElement = e.target.closest('.todo');
+  if (e.target.classList.contains("todo-three-dots")) return;
+  const todoElement = e.target.closest(".todo");
   if (!todoElement) return;
   console.log(todoElement);
 
-  const collapsible = todoElement.nextElementSibling;
+  const collapsible = todoElement.querySelector(".collapsible-content");
 
-  if(collapsible.classList.contains("active"))
-  {
+  if (collapsible.classList.contains("active")) {
     collapsible.classList.remove("active");
     todoElement.classList.remove("flat-bottom-borders");
-  }
-  else
-  {
+  } else {
     collapsible.classList.add("active");
     todoElement.classList.add("flat-bottom-borders");
   }
