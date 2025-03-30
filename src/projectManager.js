@@ -1,34 +1,46 @@
 import Project from "./project";
-import { projects, projectsMap } from "./states";
+import { activeProject, currentEditingProject, projects, setActiveProject, setCurrentEditingProject, setCurrentEditingProjectProps, updateProjectsState } from "./states";
 import { saveToLocalStorage } from "./states";
 import {
   clearProjectDialogValues,
+  clearTodos,
   closeProjectDialog,
+  removeTodoButton,
   renderProjects,
+  takeProjectDialogValues,
 } from "./uiManager";
 
-export function addProject(projectDialogValues) {
-  const { projectName } = projectDialogValues;
+export function handleProjectFormSubmit() {
+  const { projectName } = takeProjectDialogValues();
 
   if (!projectName) {
     alert("Please enter a project name");
     return;
   }
 
-  const project = new Project(projectName);
-  projects.push(project);
-  console.log(projects);
+  if (currentEditingProject) {
+    setCurrentEditingProjectProps(takeProjectDialogValues());
+  } else {
+    const newProject = new Project(projectName);
+    projects.push(newProject);
+  }
+
   saveToLocalStorage();
   renderProjects();
   closeProjectDialog();
   clearProjectDialogValues();
+  setCurrentEditingProject(null);
 }
 
-// todo bitir bunu
-function editProject(projectElement, projectDialogValues) {
-  const project = projectsMap.get(projectElement);
-  const { newName } = projectDialogValues;
-  if (!newName) return;
-
-  project.name = newName;
+export function deleteProject(project) {
+  const updatedProjects = projects.filter(p => p !== project);
+  updateProjectsState(updatedProjects);
+  if (activeProject === project) {
+    setActiveProject(null);
+    removeTodoButton();
+    clearTodos();
+  }
+  
+  saveToLocalStorage();
+  renderProjects();
 }
